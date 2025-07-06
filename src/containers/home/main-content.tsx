@@ -1,9 +1,13 @@
 import { StatusWrapper } from '@/components/common/status-wrapper';
 import { FormDataType } from '@/types/readme-form';
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 
-const ReadmeForm = lazy(() => import('@/components/forms/readme/readme-form'));
-const ReadmePreview = lazy(() => import('@/components/custom/readme-preview/readme-preview'));
+const StepperFormNew = lazy(
+  () => import('@/components/forms/readme/stepper-form-new')
+);
+const ReadmeGeneratorView = lazy(
+  () => import('@/components/readme/readme-generator-view')
+);
 
 const LoadingSpinner = () => (
   <StatusWrapper
@@ -21,22 +25,34 @@ type MainContentProps = {
   ) => void;
 };
 
-const MainContent: React.FC<MainContentProps> = ({ formData, setFormData }) => (
-  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 items-start">
-    {/* Form Section */}
-    <div className="space-y-6 order-2 xl:order-1">
-      <Suspense fallback={<LoadingSpinner />}>
-        <ReadmeForm formData={formData} setFormData={setFormData} />
-      </Suspense>
-    </div>
+const MainContent: React.FC<MainContentProps> = ({ formData, setFormData }) => {
+  const [showReadmePreview, setShowReadmePreview] = useState(false);
 
-    {/* Preview Section */}
-    <div className="xl:sticky xl:top-6 self-start order-1 xl:order-2">
+  const handleGenerateReadme = () => {
+    setShowReadmePreview(true);
+  };
+
+  const handleBackToForm = () => {
+    setShowReadmePreview(false);
+  };
+
+  if (showReadmePreview) {
+    return (
       <Suspense fallback={<LoadingSpinner />}>
-        <ReadmePreview formData={formData} />
+        <ReadmeGeneratorView formData={formData} onBack={handleBackToForm} />
       </Suspense>
-    </div>
-  </div>
-);
+    );
+  }
+
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <StepperFormNew
+        formData={formData}
+        setFormData={setFormData}
+        onGenerateReadme={handleGenerateReadme}
+      />
+    </Suspense>
+  );
+};
 
 export default MainContent;

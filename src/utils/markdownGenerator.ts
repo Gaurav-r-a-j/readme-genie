@@ -140,16 +140,18 @@ function generateSkillsSection(skills: string[]): string {
   skillsSection += `## 🛠️ Languages and Tools\n\n`;
   skillsSection += `<p align="left">\n`;
 
-  skills.forEach((skillName: string) => {
+  skills.forEach((skillName: string, index: number) => {
     const skill = skillsData.find(s => s.name === skillName);
     if (skill) {
-      skillsSection += `  <a href="#" target="_blank" rel="noreferrer">\n`;
-      skillsSection += `    <img src="${skill.image}" alt="${skill.name}" width="40" height="40"/>\n`;
-      skillsSection += `  </a>\n`;
+      skillsSection += `<a href="#" target="_blank" rel="noreferrer"> <img src="${skill.image}" alt="${skill.name}" width="40" height="40"/> </a>`;
+      // Add space between icons for better row layout
+      if (index < skills.length - 1) {
+        skillsSection += ' ';
+      }
     }
   });
 
-  skillsSection += `</p>\n\n`;
+  skillsSection += `\n</p>\n\n`;
 
   return skillsSection;
 }
