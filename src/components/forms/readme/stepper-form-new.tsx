@@ -186,15 +186,15 @@ const StepperFormNew: React.FC<StepperFormProps> = ({
   const renderCurrentSection = () => {
     switch (currentStep) {
       case 'basic':
-        return <BasicInfoSection isExpanded={true} onToggle={() => {}} />;
+        return <BasicInfoSection />;
       case 'skills':
-        return <SkillsSection isExpanded={true} onToggle={() => {}} />;
+        return <SkillsSection />;
       case 'socials':
-        return <SocialsSection isExpanded={true} onToggle={() => {}} />;
+        return <SocialsSection />;
       case 'appearance':
-        return <AppearanceSection isExpanded={true} onToggle={() => {}} />;
+        return <AppearanceSection />;
       case 'addons':
-        return <AddonsSection isExpanded={true} onToggle={() => {}} />;
+        return <AddonsSection />;
       default:
         return null;
     }

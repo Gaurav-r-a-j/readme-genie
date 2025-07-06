@@ -80,6 +80,7 @@ const SkillSelector: React.FC<SkillSelectorProps> = ({
           />
           {searchTerm && (
             <button
+              type="button"
               onClick={() => setSearchTerm('')}
               className="absolute right-2.5 top-2.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             >
@@ -91,6 +92,7 @@ const SkillSelector: React.FC<SkillSelectorProps> = ({
         <div className="flex items-center justify-between">
           <div className="flex flex-wrap gap-2">
             <Button
+              type="button"
               variant={activeCategory === null ? 'default' : 'outline'}
               size="sm"
               onClick={() => setActiveCategory(null)}
@@ -101,6 +103,7 @@ const SkillSelector: React.FC<SkillSelectorProps> = ({
             {categories.map(category => (
               <Button
                 key={category}
+                type="button"
                 variant={activeCategory === category ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setActiveCategory(category)}
@@ -113,6 +116,7 @@ const SkillSelector: React.FC<SkillSelectorProps> = ({
 
           <div className="flex gap-2">
             <Button
+              type="button"
               variant={viewMode === 'grid' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setViewMode('grid')}
@@ -121,6 +125,7 @@ const SkillSelector: React.FC<SkillSelectorProps> = ({
               Grid
             </Button>
             <Button
+              type="button"
               variant={viewMode === 'category' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setViewMode('category')}
@@ -154,6 +159,7 @@ const SkillSelector: React.FC<SkillSelectorProps> = ({
                   )}
                   {skillName}
                   <button
+                    type="button"
                     onClick={e => removeSkill(skillName, e)}
                     className="ml-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200"
                   >
