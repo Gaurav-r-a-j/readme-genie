@@ -171,6 +171,7 @@ const StepperFormNew: React.FC<StepperFormProps> = ({
       darkMode: false,
       bannerColor: '#0891b2',
       layoutStyle: 'standard' as const,
+      templateStyle: 'classic' as const,
       showStats: true,
       showVisitors: true,
       showTrophies: false,

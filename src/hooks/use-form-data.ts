@@ -32,6 +32,7 @@ const createDefaultFormData = (): ReadmeFormData => ({
   darkMode: false,
   bannerColor: '#0366d6',
   layoutStyle: 'standard',
+  templateStyle: 'classic',
 });
 
 export function useHomeFormData() {
