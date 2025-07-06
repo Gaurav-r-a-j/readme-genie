@@ -14,6 +14,13 @@ export default defineConfig({
     chunkSizeWarningLimit: 5000,
     outDir: 'dist',
     sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+        },
+      },
+    },
   },
   resolve: {
     alias: {
@@ -23,4 +30,6 @@ export default defineConfig({
       '@/utils': path.resolve(__dirname, './src/utils'),
     },
   },
+  // Ensure SEO files are copied to build
+  publicDir: 'public',
 });

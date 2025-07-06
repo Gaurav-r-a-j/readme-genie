@@ -1,39 +1,172 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:title" content="ReadMe Genie" />
-    <meta property="og:description" content="Effortlessly craft captivating README profiles with ReadMe Genie, your intuitive Github Readme Generator for everyone!" />
-    <meta property="og:image" content="https://mocha-cdn.com/og.png" type="image/png" />
-    <meta property="og:url" content="https://cd3ilf2xvtqti.mocha.app" />
-    <meta property="og:type" content="website" />
-    <meta property="og:author" content="Mocha" />
-    <meta property="og:site_name" content="ReadMe Genie" />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:site" content="@get_mocha" />
-    <meta property="twitter:title" content="ReadMe Genie" />
-    <meta property="twitter:description" content="Effortlessly craft captivating README profiles with ReadMe Genie, your intuitive Github Readme Generator for everyone!" />
-    <meta property="twitter:image" content="https://mocha-cdn.com/og.png" type="image/png" />
-    <link rel="shortcut icon" href="https://mocha-cdn.com/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="https://mocha-cdn.com/apple-touch-icon.png" type="image/png" />
-    <title>ReadMe Genie</title>
-    <meta name="description" content="Effortlessly craft captivating GitHub profile READMEs with our intuitive generator. Make your GitHub profile stand out in minutes!" />
-    <meta name="theme-color" content="#3b82f6" />
-    <script>
-      // Initialize theme based on user preference
-      const isDarkMode = localStorage.getItem('theme') === 'dark' || 
-        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      
-      if (isDarkMode) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+
+<head>
+  <!-- Essential Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO Meta Tags -->
+  <title>ReadMe Genie - Free GitHub Profile README Generator | Create Professional READMEs</title>
+  <meta name="description"
+    content="Create stunning GitHub profile READMEs in minutes with ReadMe Genie. Free, intuitive tool to craft professional README profiles with badges, stats, and custom sections. No coding required!" />
+  <meta name="keywords"
+    content="GitHub README generator, profile README, GitHub profile, README maker, README creator, GitHub stats, profile generator, free tool, developer tools, markdown generator" />
+  <meta name="author" content="Gaurav" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="bingbot" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://readme-genie-gaurav.vercel.app" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="ReadMe Genie - Free GitHub Profile README Generator" />
+  <meta property="og:description"
+    content="Create stunning GitHub profile READMEs in minutes with ReadMe Genie. Free, intuitive tool to craft professional README profiles with badges, stats, and custom sections." />
+  <meta property="og:image" content="https://github.com/gaurav-r-a-j.png" />
+  <meta property="og:image:alt" content="ReadMe Genie - GitHub Profile README Generator" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://readme-genie-gaurav.vercel.app" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ReadMe Genie" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@gaurav_r_a_j" />
+  <meta name="twitter:creator" content="@gaurav_r_a_j" />
+  <meta name="twitter:title" content="ReadMe Genie - Free GitHub Profile README Generator" />
+  <meta name="twitter:description"
+    content="Create stunning GitHub profile READMEs in minutes with ReadMe Genie. Free, intuitive tool to craft professional README profiles." />
+  <meta name="twitter:image" content="https://github.com/gaurav-r-a-j.png" />
+  <meta name="twitter:image:alt" content="ReadMe Genie - GitHub Profile README Generator" />
+
+  <!-- Additional Social Media Tags -->
+  <meta property="article:author" content="Gaurav" />
+  <meta property="article:publisher" content="https://readme-genie-gaurav.vercel.app" />
+
+  <!-- Favicon and Icons -->
+  <link rel="shortcut icon" href="https://github.com/gaurav-r-a-j.png" type="image/x-icon" />
+  <link rel="icon" type="image/x-icon" href="https://github.com/gaurav-r-a-j.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/gaurav-r-a-j.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://github.com/gaurav-r-a-j.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://github.com/gaurav-r-a-j.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="https://github.com/gaurav-r-a-j.png" color="#3b82f6" />
+
+  <!-- Theme and App Configuration -->
+  <meta name="theme-color" content="#3b82f6" />
+  <meta name="msapplication-TileColor" content="#3b82f6" />
+  <meta name="msapplication-config" content="/browserconfig.xml" />
+  <meta name="application-name" content="ReadMe Genie" />
+  <meta name="apple-mobile-web-app-title" content="ReadMe Genie" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://github.com" />
+
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="//github.com" />
+
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+  <!-- Structured Data - JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ReadMe Genie",
+    "description": "Create stunning GitHub profile READMEs in minutes with ReadMe Genie. Free, intuitive tool to craft professional README profiles with badges, stats, and custom sections.",
+    "url": "https://readme-genie-gaurav.vercel.app",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "softwareVersion": "1.0",
+    "author": {
+      "@type": "Person",
+      "name": "Gaurav",
+      "url": "https://github.com/gaurav-r-a-j",
+      "sameAs": [
+        "https://github.com/gaurav-r-a-j",
+        "https://twitter.com/gaurav_r_a_j"
+      ]
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Gaurav",
+      "url": "https://github.com/gaurav-r-a-j"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "screenshot": "https://github.com/gaurav-r-a-j.png",
+    "featureList": [
+      "GitHub Profile README Generator",
+      "Custom Badges and Stats",
+      "Professional Templates",
+      "Real-time Preview",
+      "Export to Markdown",
+      "Free to Use"
+    ]
+  }
+  </script>
+
+  <!-- Additional Structured Data for SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ReadMe Genie",
+    "description": "Free GitHub Profile README Generator - Create professional READMEs in minutes",
+    "url": "https://readme-genie-gaurav.vercel.app",
+    "applicationCategory": "DeveloperApplication",
+    "applicationSubCategory": "Code Generator",
+    "operatingSystem": "Web Browser",
+    "permissions": "Free to use",
+    "softwareVersion": "1.0",
+    "releaseNotes": "Initial release with comprehensive README generation features",
+    "screenshot": "https://github.com/gaurav-r-a-j.png",
+    "downloadUrl": "https://readme-genie-gaurav.vercel.app",
+    "installUrl": "https://readme-genie-gaurav.vercel.app",
+    "softwareHelp": {
+      "@type": "CreativeWork",
+      "url": "https://readme-genie-gaurav.vercel.app"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Gaurav",
+      "url": "https://github.com/gaurav-r-a-j"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Gaurav",
+      "url": "https://github.com/gaurav-r-a-j"
+    }
+  }
+  </script>
+
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
