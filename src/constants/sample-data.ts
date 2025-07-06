@@ -53,6 +53,7 @@ export const sampleReadmeData: ReadmeFormData = {
   darkMode: false,
   bannerColor: '#0891b2',
   layoutStyle: 'creative' as const,
+  templateStyle: 'modern' as const,
 
   // Add-ons
   showStats: true,
@@ -111,6 +112,7 @@ export const alternativeSampleData: ReadmeFormData = {
   darkMode: true,
   bannerColor: '#8b5cf6',
   layoutStyle: 'standard' as const,
+  templateStyle: 'creative' as const,
 
   // Add-ons
   showStats: true,

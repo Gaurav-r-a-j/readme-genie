@@ -15,11 +15,10 @@ import {
   FormDataType,
   ReadmeFormData,
   readmeFormSchema,
-  SectionState,
 } from '@/types/readme-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RotateCcw, Sparkles, User, Wand2 } from 'lucide-react';
-import React, { useState } from 'react';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import {
@@ -36,14 +35,6 @@ type ReadmeFormProps = {
 };
 
 const ReadmeForm: React.FC<ReadmeFormProps> = ({ formData, setFormData }) => {
-  const [expandedSections, setExpandedSections] = useState<SectionState>({
-    basic: true,
-    skills: true,
-    socials: true,
-    appearance: true,
-    addons: true,
-  });
-
   // Initialize form with React Hook Form and Zod validation
   const form = useForm({
     resolver: zodResolver(readmeFormSchema),
@@ -60,10 +51,6 @@ const ReadmeForm: React.FC<ReadmeFormProps> = ({ formData, setFormData }) => {
     });
     return () => subscription.unsubscribe();
   }, [form, setFormData]);
-
-  const toggleSection = (section: keyof SectionState) => {
-    setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
-  };
 
   const handleFormSubmit = (data: z.infer<typeof readmeFormSchema>) => {
     console.log('Form submitted:', data);
@@ -105,6 +92,7 @@ const ReadmeForm: React.FC<ReadmeFormProps> = ({ formData, setFormData }) => {
       darkMode: false,
       bannerColor: '#0891b2',
       layoutStyle: 'standard',
+      templateStyle: 'classic',
       showStats: true,
       showVisitors: true,
       showTrophies: false,
@@ -188,30 +176,15 @@ const ReadmeForm: React.FC<ReadmeFormProps> = ({ formData, setFormData }) => {
             </CardContent>
           </Card>
 
-          <BasicInfoSection
-            isExpanded={expandedSections.basic}
-            onToggle={() => toggleSection('basic')}
-          />
+          <BasicInfoSection />
 
-          <SkillsSection
-            isExpanded={expandedSections.skills}
-            onToggle={() => toggleSection('skills')}
-          />
+          <SkillsSection />
 
-          <SocialsSection
-            isExpanded={expandedSections.socials}
-            onToggle={() => toggleSection('socials')}
-          />
+          <SocialsSection />
 
-          <AppearanceSection
-            isExpanded={expandedSections.appearance}
-            onToggle={() => toggleSection('appearance')}
-          />
+          <AppearanceSection />
 
-          <AddonsSection
-            isExpanded={expandedSections.addons}
-            onToggle={() => toggleSection('addons')}
-          />
+          <AddonsSection />
 
           {/* Form Debug Panel - Remove in production */}
           {process.env.NODE_ENV === 'development' && (
