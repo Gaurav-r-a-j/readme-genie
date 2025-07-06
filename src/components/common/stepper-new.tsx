@@ -1,18 +1,5 @@
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/comp              return (
-                <div
-                  key={step.id}
-                  onClick={() => onStepClick?.(step.id)}
-                  className={`relative flex items-start gap-3 ${compact ? "p-2" : "p-3"} rounded-lg transition-all duration-200 ${
-                    onStepClick ? 'cursor-pointer' : ''
-                  } ${
-                    isCurrent
-                      ? 'bg-primary/10 border border-primary/20'
-                      : isCompleted
-                        ? 'bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 hover:bg-green-100 dark:hover:bg-green-950/30'
-                        : 'hover:bg-muted/50'
-                  }`}
-                >ard';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   CheckCircle2,
   Circle,
@@ -102,11 +89,14 @@ const Stepper: React.FC<StepperProps> = ({
               return (
                 <div
                   key={step.id}
+                  onClick={() => onStepClick?.(step.id)}
                   className={`relative flex items-start gap-3 ${compact ? 'p-2' : 'p-3'} rounded-lg transition-all duration-200 ${
+                    onStepClick ? 'cursor-pointer' : ''
+                  } ${
                     isCurrent
                       ? 'bg-primary/10 border border-primary/20'
                       : isCompleted
-                        ? 'bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800'
+                        ? 'bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 hover:bg-green-100 dark:hover:bg-green-950/30'
                         : 'hover:bg-muted/50'
                   }`}
                 >
