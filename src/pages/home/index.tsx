@@ -4,6 +4,7 @@ import {
   InstructionsSection,
   MainContent,
 } from '@/containers/home';
+import TrustSection from '@/containers/home/trust-section';
 import { useHomeFormData } from '../../hooks/use-form-data';
 
 const HomePage = () => {
@@ -12,6 +13,7 @@ const HomePage = () => {
   return (
     <PageWrapper className="w-full container">
       <HeroSection />
+      <TrustSection />
       <MainContent formData={formData} setFormData={setFormData} />
       <InstructionsSection />
     </PageWrapper>

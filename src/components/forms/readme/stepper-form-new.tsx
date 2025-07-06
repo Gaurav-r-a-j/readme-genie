@@ -186,15 +186,15 @@ const StepperFormNew: React.FC<StepperFormProps> = ({
   const renderCurrentSection = () => {
     switch (currentStep) {
       case 'basic':
-        return <BasicInfoSection isExpanded={true} onToggle={() => {}} />;
+        return <BasicInfoSection />;
       case 'skills':
-        return <SkillsSection isExpanded={true} onToggle={() => {}} />;
+        return <SkillsSection />;
       case 'socials':
-        return <SocialsSection isExpanded={true} onToggle={() => {}} />;
+        return <SocialsSection />;
       case 'appearance':
-        return <AppearanceSection isExpanded={true} onToggle={() => {}} />;
+        return <AppearanceSection />;
       case 'addons':
-        return <AddonsSection isExpanded={true} onToggle={() => {}} />;
+        return <AddonsSection />;
       default:
         return null;
     }
@@ -222,6 +222,23 @@ const StepperFormNew: React.FC<StepperFormProps> = ({
               compact
               onStepClick={handleStepClick}
             />
+
+            {/* Keyboard Shortcuts Hint */}
+            <Card className="bg-muted/20 mt-5 border-dashed">
+              <CardContent className="pt-4">
+                <p className="text-xs text-muted-foreground text-center">
+                  💡 <strong>Shortcuts:</strong> Use{' '}
+                  <kbd className="px-1 py-0.5 bg-muted rounded text-xs">
+                    Ctrl/Cmd + ←→
+                  </kbd>{' '}
+                  to navigate steps,
+                  <kbd className="px-1 py-0.5 bg-muted rounded text-xs ml-1">
+                    Ctrl/Cmd + R
+                  </kbd>{' '}
+                  to reset form, or click on any step in the progress panel.
+                </p>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Right Side - Form Content (70% width on desktop) */}
@@ -386,23 +403,6 @@ const StepperFormNew: React.FC<StepperFormProps> = ({
                 </CardContent>
               </Card>
             )}
-
-            {/* Keyboard Shortcuts Hint */}
-            <Card className="bg-muted/20 border-dashed">
-              <CardContent className="pt-4">
-                <p className="text-xs text-muted-foreground text-center">
-                  💡 <strong>Shortcuts:</strong> Use{' '}
-                  <kbd className="px-1 py-0.5 bg-muted rounded text-xs">
-                    Ctrl/Cmd + ←→
-                  </kbd>{' '}
-                  to navigate steps,
-                  <kbd className="px-1 py-0.5 bg-muted rounded text-xs ml-1">
-                    Ctrl/Cmd + R
-                  </kbd>{' '}
-                  to reset form, or click on any step in the progress panel.
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>

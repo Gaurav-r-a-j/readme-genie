@@ -120,7 +120,7 @@
 }
 
 /* Add custom styles for markdown preview */
-.prose img {
+/* .prose img {
   max-width: 100%;
   height: auto;
   border-radius: 0.375rem;
@@ -161,7 +161,7 @@
 
 .prose li {
   margin-bottom: 0.25rem;
-}
+} */
 
 /* Animation for UI elements */
 @keyframes slideIn {
