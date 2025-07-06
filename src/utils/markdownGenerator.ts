@@ -1,7 +1,230 @@
 import { skillsData } from '@/constans/skills';
 import { FormDataType } from '@/types/readme-form';
 
+// Template styles for different README profiles
+export const templateStyles = {
+  classic: 'Classic GitHub Profile',
+  modern: 'Modern with GIFs and Stats',
+  minimal: 'Clean and Minimal',
+  creative: 'Creative with Animations',
+  professional: 'Professional Corporate Style',
+};
+
+export function generateTemplateMarkdown(
+  templateStyle: keyof typeof templateStyles,
+  data: FormDataType
+): string {
+  switch (templateStyle) {
+    case 'modern':
+      return generateModernTemplate(data);
+    case 'minimal':
+      return generateMinimalTemplate(data);
+    case 'creative':
+      return generateCreativeTemplate(data);
+    case 'professional':
+      return generateProfessionalTemplate(data);
+    default:
+      return generateClassicTemplate(data);
+  }
+}
+
+function generateModernTemplate(data: FormDataType): string {
+  let markdown = '';
+
+  // Header with animation and styling
+  markdown += `<h1 align="center" style="font-family: cursive;">Hi 👋, I'm ${data.name || 'Developer'}</h1>\n`;
+
+  if (data.title) {
+    markdown += `<h3 align="center">${data.title}</h3>\n`;
+  }
+
+  // Right-aligned animated GIF
+  markdown += `<img align="right" style="width:300px; border-radius:50px;" src="https://i.pinimg.com/originals/ab/68/e6/ab68e6d38452d78ac98687865281c5c8.gif" alt="Coding Animation">\n\n`;
+
+  // Profile views and trophies
+  if (data.github && data.showVisitors) {
+    markdown += `<p align="left"> <img src="https://komarev.com/ghpvc/?username=${data.github}&label=Profile%20views&color=0e75b6&style=flat" alt="${data.github}" /> </p>\n\n`;
+  }
+
+  if (data.github && data.showTrophies) {
+    markdown += `<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=${data.github}" alt="${data.github}" /></a> </p>\n\n`;
+  }
+
+  // About section with bullet points
+  const facts = [];
+  if (data.currentWork) facts.push(`👨‍💻 ${data.currentWork}`);
+  if (data.email) facts.push(`📫 How to reach me **${data.email}**`);
+  if (data.portfolio)
+    facts.push(`👨‍💻 All of my projects are available at ${data.portfolio}`);
+
+  facts.forEach(fact => {
+    markdown += `- ${fact}\n`;
+  });
+  markdown += '\n';
+
+  // Social connections
+  markdown += generateSocialSection(data);
+
+  // Skills
+  if (data.skills && data.skills.length > 0) {
+    markdown += generateSkillsSection(data.skills);
+  }
+
+  // GitHub stats
+  markdown += generateGitHubStatsSection(data);
+
+  return markdown;
+}
+
+function generateMinimalTemplate(data: FormDataType): string {
+  let markdown = '';
+
+  markdown += `# ${data.name || 'Developer'}\n\n`;
+
+  if (data.title) {
+    markdown += `> ${data.title}\n\n`;
+  }
+
+  if (data.about) {
+    markdown += `${data.about}\n\n`;
+  }
+
+  // Simple contact info
+  if (data.email) {
+    markdown += `📧 ${data.email}\n`;
+  }
+
+  if (data.portfolio) {
+    markdown += `🌐 [Portfolio](${data.portfolio})\n`;
+  }
+
+  if (data.linkedin) {
+    markdown += `💼 [LinkedIn](https://linkedin.com/in/${data.linkedin})\n`;
+  }
+
+  markdown += '\n';
+
+  // Simple skills list
+  if (data.skills && data.skills.length > 0) {
+    markdown += `### Skills\n${data.skills.join(' • ')}\n\n`;
+  }
+
+  // Basic GitHub stats
+  if (data.github && data.showStats) {
+    markdown += `### GitHub Stats\n\n`;
+    markdown += `![GitHub Stats](https://github-readme-stats.vercel.app/api?username=${data.github}&show_icons=true&theme=minimal)\n\n`;
+  }
+
+  return markdown;
+}
+
+function generateCreativeTemplate(data: FormDataType): string {
+  let markdown = '';
+
+  // Creative header with emojis and styling
+  markdown += `<div align="center">\n\n`;
+  markdown += `# 🚀 Welcome to ${data.name || 'My'} Galaxy! 🌟\n\n`;
+
+  if (data.title) {
+    markdown += `### 💫 ${data.title} 💫\n\n`;
+  }
+
+  // Multiple animated elements
+  markdown += `<img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake.svg" alt="Snake animation" />\n\n`;
+
+  if (data.github) {
+    markdown += `<img src="https://github-readme-activity-graph.vercel.app/graph?username=${data.github}&theme=react-dark&hide_border=true" alt="Activity Graph" />\n\n`;
+  }
+
+  markdown += `</div>\n\n`;
+
+  // Rest of the content
+  markdown += generateAboutSection(data);
+  markdown += generateSocialSection(data);
+
+  if (data.skills && data.skills.length > 0) {
+    markdown += generateSkillsSection(data.skills);
+  }
+
+  markdown += generateGitHubStatsSection(data);
+
+  return markdown;
+}
+
+function generateProfessionalTemplate(data: FormDataType): string {
+  let markdown = '';
+
+  // Professional header
+  markdown += `# ${data.name || 'Professional Developer'}\n\n`;
+
+  if (data.title) {
+    markdown += `## ${data.title}\n\n`;
+  }
+
+  if (data.location) {
+    markdown += `📍 **Location:** ${data.location}\n`;
+  }
+
+  if (data.email) {
+    markdown += `📧 **Email:** ${data.email}\n`;
+  }
+
+  if (data.portfolio) {
+    markdown += `🌐 **Portfolio:** [${data.portfolio}](${data.portfolio})\n`;
+  }
+
+  markdown += '\n---\n\n';
+
+  // About section
+  if (data.about) {
+    markdown += `## About\n\n${data.about}\n\n`;
+  }
+
+  // Professional experience
+  if (data.currentWork) {
+    markdown += `## Current Role\n\n${data.currentWork}\n\n`;
+  }
+
+  if (data.education) {
+    markdown += `## Education\n\n${data.education}\n\n`;
+  }
+
+  // Technical skills in organized format
+  if (data.skills && data.skills.length > 0) {
+    markdown += `## Technical Skills\n\n`;
+    markdown += `\`\`\`\n${data.skills.join(', ')}\n\`\`\`\n\n`;
+  }
+
+  // Professional links
+  const professionalLinks = [];
+  if (data.linkedin)
+    professionalLinks.push(
+      `[LinkedIn](https://linkedin.com/in/${data.linkedin})`
+    );
+  if (data.github)
+    professionalLinks.push(`[GitHub](https://github.com/${data.github})`);
+
+  if (professionalLinks.length > 0) {
+    markdown += `## Connect\n\n${professionalLinks.join(' | ')}\n\n`;
+  }
+
+  return markdown;
+}
+
+function generateClassicTemplate(data: FormDataType): string {
+  return generateMarkdown(data); // Use existing function as classic template
+}
+
 export function generateMarkdown(data: FormDataType): string {
+  // Use template system if templateStyle is specified
+  if (data.templateStyle && data.templateStyle !== 'classic') {
+    return generateTemplateMarkdown(
+      data.templateStyle as keyof typeof templateStyles,
+      data
+    );
+  }
+
+  // Original logic for classic/standard generation
   let markdown = '';
 
   // Header section with GitHub style
@@ -33,29 +256,26 @@ export function generateMarkdown(data: FormDataType): string {
 function generateCreativeHeader(data: FormDataType): string {
   let header = '';
 
-  header += `<div align="center">\n\n`;
-  header += `# Hi 👋, I'm ${data.name || 'Developer'}\n\n`;
+  // Header with cursive font like your example
+  header += `<h1 align="center" style="font-family: cursive;">Hi 👋, I'm ${data.name || 'Developer'}</h1>\n`;
 
   if (data.title) {
-    header += `### ${data.title}\n\n`;
+    header += `<h3 align="center">${data.title}</h3>\n`;
   }
 
-  // Add animated GIF for creative layout
-  header += `<img align="right" alt="Coding" width="400" src="https://raw.githubusercontent.com/adamalston/adamalston/master/animation.gif">\n\n`;
+  // Add animated GIF with right alignment and rounded corners
+  header += `<img align="right" style="width:300px; border-radius:50px;" src="https://i.pinimg.com/originals/ab/68/e6/ab68e6d38452d78ac98687865281c5c8.gif" alt="Coding Animation">\n\n`;
 
   // Profile views counter
   if (data.github && data.showVisitors) {
-    header += `<img src="https://komarev.com/ghpvc/?username=${data.github}&label=Profile%20views&color=0e75b6&style=flat" alt="${data.github}" />\n\n`;
+    header += `<p align="left"> <img src="https://komarev.com/ghpvc/?username=${data.github}&label=Profile%20views&color=0e75b6&style=flat" alt="${data.github}" /> </p>\n\n`;
   }
 
   // GitHub trophy
   if (data.github && data.showTrophies) {
-    header += `<a href="https://github.com/ryo-ma/github-profile-trophy">\n`;
-    header += `  <img src="https://github-profile-trophy.vercel.app/?username=${data.github}" alt="${data.github}" />\n`;
-    header += `</a>\n\n`;
+    header += `<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=${data.github}" alt="${data.github}" /></a> </p>\n\n`;
   }
 
-  header += `</div>\n\n`;
   return header;
 }
 
@@ -94,41 +314,39 @@ function generateStandardHeader(data: FormDataType): string {
 function generateAboutSection(data: FormDataType): string {
   let aboutSection = '';
 
-  // Main about section
-  if (data.about) {
-    aboutSection += `## 🚀 About Me\n\n`;
-    aboutSection += `${data.about}\n\n`;
-  }
-
-  // Quick facts section
+  // Quick facts section with bullet points
   const facts = [];
 
   if (data.currentWork) {
-    facts.push(`🔭 ${data.currentWork}`);
+    facts.push(`�‍💻 ${data.currentWork}`);
   }
 
   if (data.education) {
     facts.push(`🎓 ${data.education}`);
   }
 
+  if (data.email) {
+    facts.push(`📫 How to reach me **${data.email}**`);
+  }
+
+  if (data.portfolio) {
+    facts.push(`👨‍� All of my projects are available at ${data.portfolio}`);
+  }
+
   if (data.funFact) {
     facts.push(`⚡ Fun fact: ${data.funFact}`);
   }
 
-  if (data.email) {
-    facts.push(`📫 Reach me at **${data.email}**`);
-  }
-
-  if (data.portfolio) {
-    facts.push(`👨‍💻 Portfolio: [${data.portfolio}](${data.portfolio})`);
-  }
-
   if (facts.length > 0) {
-    aboutSection += `## 📋 Quick Facts\n\n`;
     facts.forEach(fact => {
       aboutSection += `- ${fact}\n`;
     });
     aboutSection += '\n';
+  }
+
+  // Main about section
+  if (data.about) {
+    aboutSection += `${data.about}\n\n`;
   }
 
   return aboutSection;
@@ -137,21 +355,17 @@ function generateAboutSection(data: FormDataType): string {
 function generateSkillsSection(skills: string[]): string {
   let skillsSection = '';
 
-  skillsSection += `## 🛠️ Languages and Tools\n\n`;
-  skillsSection += `<p align="left">\n`;
+  skillsSection += `<h3 align="left">Languages and Tools:</h3>\n`;
+  skillsSection += `<p align="left"> `;
 
-  skills.forEach((skillName: string, index: number) => {
+  skills.forEach((skillName: string) => {
     const skill = skillsData.find(s => s.name === skillName);
     if (skill) {
-      skillsSection += `<a href="#" target="_blank" rel="noreferrer"> <img src="${skill.image}" alt="${skill.name}" width="40" height="40"/> </a>`;
-      // Add space between icons for better row layout
-      if (index < skills.length - 1) {
-        skillsSection += ' ';
-      }
+      skillsSection += `<a href="#" target="_blank" rel="noreferrer"> <img src="${skill.image}" alt="${skill.name}" width="40" height="40"/> </a> `;
     }
   });
 
-  skillsSection += `\n</p>\n\n`;
+  skillsSection += `</p>\n\n`;
 
   return skillsSection;
 }
@@ -221,7 +435,7 @@ function generateSocialSection(data: FormDataType): string {
   if (activeSocials.length === 0) return '';
 
   let socialSection = '';
-  socialSection += `## 🌐 Connect with me\n\n`;
+  socialSection += `<h3 align="left">Connect with me:</h3>\n`;
   socialSection += `<p align="left">\n`;
 
   activeSocials.forEach(social => {
@@ -260,9 +474,7 @@ function generateSocialSection(data: FormDataType): string {
       }
     }
 
-    socialSection += `  <a href="${url}" target="blank">\n`;
-    socialSection += `    <img align="center" src="${social.icon}" alt="${social.label}" height="30" width="40" />\n`;
-    socialSection += `  </a>\n`;
+    socialSection += `<a href="${url}" target="blank"><img align="center" src="${social.icon}" alt="${social.label}" height="30" width="40" /></a>\n`;
   });
 
   socialSection += `</p>\n\n`;
@@ -274,42 +486,18 @@ function generateGitHubStatsSection(data: FormDataType): string {
 
   let statsSection = '';
 
-  if (data.showStats || data.showStreak) {
-    statsSection += `## 📊 GitHub Stats\n\n`;
-  }
-
-  // GitHub Stats
+  // GitHub Stats - similar to your profile layout
   if (data.github && data.showStats) {
-    statsSection += `<div align="center">\n\n`;
-    statsSection += `![${data.github}'s GitHub stats](https://github-readme-stats.vercel.app/api?username=${data.github}&show_icons=true&theme=default)\n\n`;
-    statsSection += `![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=${data.github}&layout=compact&theme=default)\n\n`;
-    statsSection += `</div>\n\n`;
+    // Top Languages (left aligned)
+    statsSection += `<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=${data.github}&show_icons=true&locale=en&layout=compact" alt="${data.github}" /></p>\n\n`;
+
+    // GitHub Stats (center aligned)
+    statsSection += `<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=${data.github}&show_icons=true&locale=en" alt="${data.github}" /></p>\n\n`;
   }
 
-  // GitHub Streak
+  // GitHub Streak (center aligned)
   if (data.github && data.showStreak) {
-    statsSection += `<div align="center">\n\n`;
-    statsSection += `![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=${data.github}&theme=default)\n\n`;
-    statsSection += `</div>\n\n`;
-  }
-
-  // Contact section
-  if (data.email || data.portfolio) {
-    statsSection += `---\n\n`;
-    statsSection += `<div align="center">\n`;
-
-    if (data.email) {
-      statsSection += `  📧 [${data.email}](mailto:${data.email}) • `;
-    }
-
-    if (data.portfolio) {
-      statsSection += `🌐 [Portfolio](${data.portfolio})`;
-    }
-
-    statsSection += `\n</div>\n\n`;
-    statsSection += `<div align="center">\n`;
-    statsSection += `  <p>Thanks for visiting my profile! 😊</p>\n`;
-    statsSection += `</div>\n`;
+    statsSection += `<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=${data.github}&" alt="${data.github}" /></p>\n\n`;
   }
 
   return statsSection;

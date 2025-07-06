@@ -4,20 +4,20 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98.8235%;
+    --background: 0 0% 96.8627%;
     --foreground: 0 0% 0%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
-    --popover: 0 0% 100%;
+    --popover: 0 0% 94.902%;
     --popover-foreground: 0 0% 0%;
     --primary: 143.1373 100% 70%;
     --primary-foreground: 0 0% 0%;
-    --secondary: 222.439 100% 91.9608%;
+    --secondary: 136.4706 100% 90%;
     --secondary-foreground: 0 0% 0%;
-    --muted: 0 0% 94.1176%;
+    --muted: 0 0% 94.902%;
     --muted-foreground: 0 0% 20%;
-    --accent: 216 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 140.8929 100% 21.9608%;
     --destructive: 0 0% 0%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 90.9804%;
@@ -28,7 +28,7 @@
     --chart-3: 216 100% 50%;
     --chart-4: 120 100% 40%;
     --chart-5: 300 100% 40%;
-    --sidebar: 0 0% 94.1176%;
+    --sidebar: 0 0% 94.902%;
     --sidebar-foreground: 0 0% 0%;
     --sidebar-primary: 143.1373 100% 70%;
     --sidebar-primary-foreground: 0 0% 100%;
@@ -40,49 +40,49 @@
     --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
     --font-mono: Space Mono, monospace;
     --radius: 0px;
-    --shadow-2xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.5);
-    --shadow-xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.5);
+    --shadow-2xs: 4px 4px 0px 0px hsl(0 0% 0% / 0);
+    --shadow-xs: 4px 4px 0px 0px hsl(0 0% 0% / 0);
     --shadow-sm:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 1px 2px -1px hsl(0 0% 0% / 1);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 1px 2px -1px hsl(0 0% 0% / 0);
     --shadow:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 1px 2px -1px hsl(0 0% 0% / 1);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 1px 2px -1px hsl(0 0% 0% / 0);
     --shadow-md:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 2px 4px -1px hsl(0 0% 0% / 1);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 2px 4px -1px hsl(0 0% 0% / 0);
     --shadow-lg:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 4px 6px -1px hsl(0 0% 0% / 1);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 4px 6px -1px hsl(0 0% 0% / 0);
     --shadow-xl:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 8px 10px -1px hsl(0 0% 0% / 1);
-    --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 2.5);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 8px 10px -1px hsl(0 0% 0% / 0);
+    --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 0);
     --tracking-normal: 0em;
     --spacing: 0.25rem;
   }
 
   .dark {
-    --background: 0 0% 0%;
+    --background: 0 0% 7.0588%;
     --foreground: 0 0% 100%;
-    --card: 0 1.4085% 13.9216%;
+    --card: 0 0% 11.7647%;
     --card-foreground: 0 0% 100%;
-    --popover: 0 0% 20%;
+    --popover: 0 0% 15.2941%;
     --popover-foreground: 0 0% 100%;
     --primary: 143.1373 100% 70%;
     --primary-foreground: 0 0% 0%;
-    --secondary: 160 100% 60%;
+    --secondary: 146.7391 100% 81.9608%;
     --secondary-foreground: 0 0% 0%;
-    --muted: 0 0% 20%;
+    --muted: 0 0% 15.2941%;
     --muted-foreground: 0 0% 80%;
-    --accent: 210 100% 60%;
+    --accent: 146.6667 73.7705% 88.0392%;
     --accent-foreground: 0 0% 0%;
     --destructive: 0 97.7011% 65.8824%;
     --destructive-foreground: 0 100% 73.9216%;
     --border: 0 1.1494% 17.0588%;
-    --input: 0 0% 80%;
+    --input: 0 0% 43.1373%;
     --ring: 143.1373 100% 70%;
     --chart-1: 143.1373 100% 70%;
     --chart-2: 160 100% 60%;
     --chart-3: 210 100% 60%;
     --chart-4: 120 60% 50%;
     --chart-5: 300 60% 50%;
-    --sidebar: 0 0% 0%;
+    --sidebar: 0 0% 7.0588%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 143.1373 100% 70%;
     --sidebar-primary-foreground: 0 0% 0%;
@@ -94,19 +94,19 @@
     --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
     --font-mono: Space Mono, monospace;
     --radius: 0px;
-    --shadow-2xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.5);
-    --shadow-xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.5);
+    --shadow-2xs: 4px 4px 0px 0px hsl(0 0% 0% / 0);
+    --shadow-xs: 4px 4px 0px 0px hsl(0 0% 0% / 0);
     --shadow-sm:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 1px 2px -1px hsl(0 0% 0% / 1);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 1px 2px -1px hsl(0 0% 0% / 0);
     --shadow:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 1px 2px -1px hsl(0 0% 0% / 1);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 1px 2px -1px hsl(0 0% 0% / 0);
     --shadow-md:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 2px 4px -1px hsl(0 0% 0% / 1);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 2px 4px -1px hsl(0 0% 0% / 0);
     --shadow-lg:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 4px 6px -1px hsl(0 0% 0% / 1);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 4px 6px -1px hsl(0 0% 0% / 0);
     --shadow-xl:
-      4px 4px 0px 0px hsl(0 0% 0% / 1), 4px 8px 10px -1px hsl(0 0% 0% / 1);
-    --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 2.5);
+      4px 4px 0px 0px hsl(0 0% 0% / 0), 4px 8px 10px -1px hsl(0 0% 0% / 0);
+    --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 0);
   }
   body {
     letter-spacing: var(--tracking-normal);

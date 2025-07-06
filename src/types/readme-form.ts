@@ -4,23 +4,37 @@ import { z } from 'zod';
 export const basicInfoSchema = z.object({
   name: z.string().min(1, 'Name is required').max(50, 'Name is too long'),
   title: z.string().min(1, 'Title is required').max(100, 'Title is too long'),
-  about: z.string().min(10, 'About section should be at least 10 characters').max(500, 'About section is too long'),
+  about: z
+    .string()
+    .min(10, 'About section should be at least 10 characters')
+    .max(500, 'About section is too long'),
   location: z.string().default(''),
-  portfolio: z.string().url('Please enter a valid URL').or(z.literal('')).default(''),
+  portfolio: z
+    .string()
+    .url('Please enter a valid URL')
+    .or(z.literal(''))
+    .default(''),
   currentWork: z.string().default(''),
   education: z.string().default(''),
   funFact: z.string().default(''),
 });
 
 export const skillsSchema = z.object({
-  skills: z.array(z.string()).min(1, 'Please select at least one skill').max(20, 'Maximum 20 skills allowed'),
+  skills: z
+    .array(z.string())
+    .min(1, 'Please select at least one skill')
+    .max(20, 'Maximum 20 skills allowed'),
 });
 
 export const socialsSchema = z.object({
   github: z.string().min(1, 'GitHub username is required'),
   twitter: z.string().default(''),
   linkedin: z.string().default(''),
-  email: z.string().email('Please enter a valid email').or(z.literal('')).default(''),
+  email: z
+    .string()
+    .email('Please enter a valid email')
+    .or(z.literal(''))
+    .default(''),
   instagram: z.string().default(''),
   facebook: z.string().default(''),
   codepen: z.string().default(''),
@@ -35,8 +49,14 @@ export const socialsSchema = z.object({
 
 export const appearanceSchema = z.object({
   darkMode: z.boolean().default(false),
-  bannerColor: z.string().regex(/^#[0-9A-F]{6}$/i, 'Please enter a valid hex color').default('#0891b2'),
+  bannerColor: z
+    .string()
+    .regex(/^#[0-9A-F]{6}$/i, 'Please enter a valid hex color')
+    .default('#0891b2'),
   layoutStyle: z.enum(['standard', 'compact', 'creative']).default('standard'),
+  templateStyle: z
+    .enum(['classic', 'modern', 'minimal', 'creative', 'professional'])
+    .default('classic'),
 });
 
 export const addonsSchema = z.object({
