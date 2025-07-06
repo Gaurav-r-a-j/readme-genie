@@ -7,7 +7,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import React from 'react';
+import { cn } from '@/lib/utils';
+import React, { ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 interface FormTextAreaFieldProps {
@@ -19,6 +20,7 @@ interface FormTextAreaFieldProps {
   required?: boolean;
   disabled?: boolean;
   rows?: number;
+  icon?: ReactNode;
 }
 
 export const FormTextAreaField: React.FC<FormTextAreaFieldProps> = ({
@@ -30,6 +32,7 @@ export const FormTextAreaField: React.FC<FormTextAreaFieldProps> = ({
   required = false,
   disabled = false,
   rows = 3,
+  icon,
 }) => {
   const form = useFormContext();
 
@@ -40,7 +43,8 @@ export const FormTextAreaField: React.FC<FormTextAreaFieldProps> = ({
       render={({ field }) => (
         <FormItem className={className}>
           {label && (
-            <FormLabel>
+            <FormLabel className={cn(icon && 'flex items-center gap-2')}>
+              {icon}
               {label}
               {required && <span className="text-destructive ml-1">*</span>}
             </FormLabel>
@@ -50,7 +54,7 @@ export const FormTextAreaField: React.FC<FormTextAreaFieldProps> = ({
               {...field}
               placeholder={placeholder}
               disabled={disabled}
-              className={`min-h-[${rows * 24}px]`}
+              rows={rows}
             />
           </FormControl>
           {description && <FormDescription>{description}</FormDescription>}

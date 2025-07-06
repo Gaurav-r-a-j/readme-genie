@@ -1,5 +1,5 @@
-import { FormDataType } from '@/components/forms/readme-form';
 import { Card, CardContent } from '@/components/ui/card';
+import { FormDataType } from '@/types/readme-form';
 import {
   BadgeCheck,
   BarChart3,

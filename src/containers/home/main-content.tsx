@@ -1,8 +1,8 @@
 import { StatusWrapper } from '@/components/common/status-wrapper';
-import { FormDataType } from '@/components/forms/readme-form';
+import { FormDataType } from '@/types/readme-form';
 import React, { Suspense, lazy } from 'react';
 
-const ReadmeForm = lazy(() => import('@/components/forms/readme-form'));
+const ReadmeForm = lazy(() => import('@/components/forms/readme/readme-form'));
 const ReadmePreview = lazy(() => import('@/components/custom/readme-preview'));
 
 const LoadingSpinner = () => (

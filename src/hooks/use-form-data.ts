@@ -1,7 +1,7 @@
-import { FormDataType } from '@/components/forms/readme-form';
+import { ReadmeFormData } from '@/types/readme-form';
 import { useCallback, useMemo, useState } from 'react';
 
-const createDefaultFormData = (): FormDataType => ({
+const createDefaultFormData = (): ReadmeFormData => ({
   name: '',
   title: '',
   about: '',
@@ -35,7 +35,7 @@ const createDefaultFormData = (): FormDataType => ({
 });
 
 export function useHomeFormData() {
-  const [formData, setFormData] = useState<FormDataType>(() => {
+  const [formData, setFormData] = useState<ReadmeFormData>(() => {
     try {
       const savedData = localStorage.getItem('readmeFormData');
       return savedData
@@ -50,7 +50,7 @@ export function useHomeFormData() {
   // Debounced save to localStorage
   const saveToLocalStorage = useMemo(() => {
     let timeoutId: NodeJS.Timeout;
-    return (data: FormDataType) => {
+    return (data: ReadmeFormData) => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         try {
@@ -64,7 +64,7 @@ export function useHomeFormData() {
 
   // Memoized setFormData to prevent unnecessary re-renders
   const handleFormDataChange = useCallback(
-    (data: FormDataType | ((prev: FormDataType) => FormDataType)) => {
+    (data: ReadmeFormData | ((prev: ReadmeFormData) => ReadmeFormData)) => {
       setFormData(prevData => {
         const newData = typeof data === 'function' ? data(prevData) : data;
         saveToLocalStorage(newData);

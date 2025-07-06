@@ -1,5 +1,5 @@
-import { FormDataType } from '@/components/forms/readme-form';
 import { skillsData } from '@/constans/skills';
+import { FormDataType } from '@/types/readme-form';
 
 export function generateMarkdown(data: FormDataType): string {
   let markdown = '';
@@ -79,7 +79,7 @@ export function generateMarkdown(data: FormDataType): string {
       markdown += `## 💻 Skills & Technologies\n\n`;
       markdown += `<div align="center">\n\n`;
 
-      data.skills.forEach(skillName => {
+      data.skills.forEach((skillName: string) => {
         const skill = skillsData.find(s => s.name === skillName);
         if (skill) {
           markdown += `<a href="#" title="${skill.name}"><img src="${skill.image}" alt="${skill.name}" width="40" height="40" style="margin:0 10px 10px 0;"/></a>`;
@@ -91,7 +91,7 @@ export function generateMarkdown(data: FormDataType): string {
       markdown += `## Skills\n\n`;
       markdown += `<p align="left">\n`;
 
-      data.skills.forEach(skillName => {
+      data.skills.forEach((skillName: string) => {
         const skill = skillsData.find(s => s.name === skillName);
         if (skill) {
           markdown += `<a href="#" title="${skill.name}"><img src="${skill.image}" alt="${skill.name}" width="36" height="36" style="margin:0 5px 5px 0;"/></a>`;
@@ -106,7 +106,7 @@ export function generateMarkdown(data: FormDataType): string {
       // Group skills by category
       const skillsByCategory: { [key: string]: string[] } = {};
 
-      data.skills.forEach(skillName => {
+      data.skills.forEach((skillName: string) => {
         const skill = skillsData.find(s => s.name === skillName);
         if (skill) {
           if (!skillsByCategory[skill.category]) {

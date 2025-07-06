@@ -137,7 +137,7 @@ export const skillsData = [
   {
     name: 'Laravel',
     image:
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg',
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
     category: 'Backend',
   },
   {
@@ -161,7 +161,7 @@ export const skillsData = [
   {
     name: 'Rust',
     image:
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg',
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg',
     category: 'Backend',
   },
   {
@@ -231,7 +231,7 @@ export const skillsData = [
   {
     name: 'AWS',
     image:
-      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain.svg',
     category: 'DevOps',
   },
   {
@@ -484,7 +484,8 @@ export const skillsData = [
   },
   {
     name: 'Cypress',
-    image: 'https://asset.brandfetch.io/idD7RfhCyh/id3KSPzOxb.png',
+    image:
+      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-plain.svg',
     category: 'Testing',
   },
   {
