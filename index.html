@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="ReadMe Genie" />
+    <meta property="og:description" content="Effortlessly craft captivating README profiles with ReadMe Genie, your intuitive Github Readme Generator for everyone!" />
+    <meta property="og:image" content="https://mocha-cdn.com/og.png" type="image/png" />
+    <meta property="og:url" content="https://cd3ilf2xvtqti.mocha.app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:author" content="Mocha" />
+    <meta property="og:site_name" content="ReadMe Genie" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@get_mocha" />
+    <meta property="twitter:title" content="ReadMe Genie" />
+    <meta property="twitter:description" content="Effortlessly craft captivating README profiles with ReadMe Genie, your intuitive Github Readme Generator for everyone!" />
+    <meta property="twitter:image" content="https://mocha-cdn.com/og.png" type="image/png" />
+    <link rel="shortcut icon" href="https://mocha-cdn.com/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://mocha-cdn.com/apple-touch-icon.png" type="image/png" />
+    <title>ReadMe Genie</title>
+    <meta name="description" content="Effortlessly craft captivating GitHub profile READMEs with our intuitive generator. Make your GitHub profile stand out in minutes!" />
+    <meta name="theme-color" content="#3b82f6" />
+    <script>
+      // Initialize theme based on user preference
+      const isDarkMode = localStorage.getItem('theme') === 'dark' || 
+        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
