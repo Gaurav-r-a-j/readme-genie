@@ -9,19 +9,35 @@ import { Moon, Sun } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
 const ThemeToggle: React.FC = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>(
-    () => (localStorage.getItem('theme') as 'light' | 'dark') || 'light'
-  );
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    // Check if we're in the browser environment
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme') as 'light' | 'dark';
+      if (savedTheme) {
+        return savedTheme;
+      }
+      // Check system preference if no saved theme
+      if (
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      ) {
+        return 'dark';
+      }
+    }
+    // Default to dark theme
+    return 'dark';
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
 
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
+    // Remove both classes first to avoid conflicts
+    root.classList.remove('light', 'dark');
 
+    // Add the current theme class
+    root.classList.add(theme);
+
+    // Save to localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
 
@@ -37,17 +53,19 @@ const ThemeToggle: React.FC = () => {
             variant="ghost"
             size="icon"
             onClick={toggleTheme}
-            className="h-9 w-9 rounded-full"
+            className="h-9 w-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
           >
-            {theme === 'light' ? (
-              <Sun className="h-5 w-5 text-amber-500" />
-            ) : (
-              <Moon className="h-5 w-5 text-blue-400" />
-            )}
+            <div className="relative">
+              {theme === 'light' ? (
+                <Sun className="h-5 w-5 text-amber-500 transition-transform duration-200 rotate-0 scale-100" />
+              ) : (
+                <Moon className="h-5 w-5 text-blue-400 transition-transform duration-200 rotate-0 scale-100" />
+              )}
+            </div>
             <span className="sr-only">Toggle theme</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent side="bottom">
           <p>Switch to {theme === 'light' ? 'dark' : 'light'} mode</p>
         </TooltipContent>
       </Tooltip>
