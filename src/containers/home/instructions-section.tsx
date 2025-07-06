@@ -1,7 +1,7 @@
 import { SectionWrapper } from '@/components/common/section-wrapper';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2, Github, Lightbulb, Sparkles } from 'lucide-react';
+import { Github, Lightbulb, Sparkles } from 'lucide-react';
 import React from 'react';
 
 const InstructionsSection: React.FC = () => {
@@ -41,58 +41,60 @@ const InstructionsSection: React.FC = () => {
 
   return (
     <SectionWrapper className="mt-12">
-      <Card className="bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20 shadow-lg rounded-lg overflow-hidden">
-        <CardHeader className="bg-primary/10 border-b border-primary/20">
-          <CardTitle className="text-2xl font-bold text-primary flex items-center">
-            <Github className="h-6 w-6 mr-3" />
+      <Card className="bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20 shadow-lg  overflow-hidden">
+        <CardHeader className="bg-primary/10 border-b border-primary/20 px-8 py-6">
+          <CardTitle className="text-3xl font-bold text-primary flex items-center justify-center md:justify-start">
+            <Github className="h-7 w-7 mr-3" />
             How to Deploy Your README
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <div className="space-y-6">
+        <CardContent className="p-8">
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-12">
+            <div className="order-2 md:order-1">
+              <h3 className="text-xl font-semibold text-foreground mb-6 text-center md:text-left">
+                Step-by-Step Guide
+              </h3>
+              <div className="space-y-4">
                 {steps.map((step, index) => (
                   <div
                     key={index}
-                    className="flex items-start p-4 bg-background rounded-lg border border-border hover:shadow-md transition-shadow"
+                    className="flex items-start p-5 bg-background border border-border hover:shadow-md transition-all duration-200 hover:border-primary/30"
                   >
                     <Badge
                       variant="secondary"
-                      className="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0 bg-primary text-primary-foreground"
+                      className="rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold mr-5 mt-0.5 flex-shrink-0 bg-primary text-primary-foreground shadow-sm"
                     >
                       {step.number}
                     </Badge>
-                    <span className="text-foreground text-lg">{step.text}</span>
+                    <div className="flex-1 pt-1">
+                      <span className="text-foreground text-base leading-relaxed">
+                        {step.text}
+                      </span>
+                    </div>
                   </div>
                 ))}
-                <div className="flex items-start p-4 bg-green-50 rounded-lg border border-green-200">
-                  <div className="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0 bg-green-100 text-green-600">
-                    <CheckCircle2 className="h-5 w-5" />
-                  </div>
-                  <span className="font-semibold text-green-600 text-lg">
-                    Your profile README is now live!
-                  </span>
-                </div>
               </div>
             </div>
-            <div>
-              <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 border-amber-200 dark:border-amber-800 shadow-md">
-                <CardHeader className="pb-3 bg-amber-50 dark:bg-amber-900/30 border-b border-amber-200 dark:border-amber-800">
-                  <CardTitle className="font-bold text-amber-800 dark:text-amber-300 flex items-center text-lg">
+            <div className="order-1 md:order-2 flex flex-col">
+              <h3 className="text-xl font-semibold text-foreground mb-6 text-center md:text-left">
+                Expert Advice
+              </h3>
+              <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 border-amber-200 dark:border-amber-800 shadow-md  flex-1">
+                <CardHeader className="pb-4 bg-amber-50 dark:bg-amber-900/30 border-b border-amber-200 dark:border-amber-800 px-6 py-5">
+                  <CardTitle className="font-bold text-amber-800 dark:text-amber-300 flex items-center justify-center md:justify-start text-lg">
                     <Sparkles className="h-5 w-5 mr-2" />
                     Pro Tips
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-4">
-                  <ul className="text-sm text-amber-700 dark:text-amber-200 space-y-3">
+                <CardContent className="p-6">
+                  <ul className="text-sm text-amber-700 dark:text-amber-200 space-y-4">
                     {proTips.map((tip, index) => (
                       <li
                         key={index}
-                        className="flex items-start p-2 hover:bg-amber-100 dark:hover:bg-amber-900/50 rounded transition-colors"
+                        className="flex items-start p-3 hover:bg-amber-100 dark:hover:bg-amber-900/50  transition-colors duration-200"
                       >
-                        <Lightbulb className="h-4 w-4 mr-2 mt-1 text-amber-500 flex-shrink-0" />
-                        <span>{tip}</span>
+                        <Lightbulb className="h-4 w-4 mr-3 mt-0.5 text-amber-500 flex-shrink-0" />
+                        <span className="leading-relaxed">{tip}</span>
                       </li>
                     ))}
                   </ul>
