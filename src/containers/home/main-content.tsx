@@ -1,16 +1,20 @@
 import { StatusWrapper } from '@/components/common/status-wrapper';
 import { FormDataType } from '@/types/readme-form';
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 
-const ReadmeForm = lazy(() => import('@/components/forms/readme/readme-form'));
-const ReadmePreview = lazy(() => import('@/components/custom/readme-preview'));
+const StepperFormNew = lazy(
+  () => import('@/components/forms/readme/stepper-form-new')
+);
+const ReadmeGeneratorView = lazy(
+  () => import('@/components/readme/readme-generator-view')
+);
 
 const LoadingSpinner = () => (
   <StatusWrapper
     status="loading"
     message="Loading component..."
     compact
-    className="p-8 justify-center"
+    className="p-8 justify-center min-h-[300px] bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700"
   />
 );
 
@@ -21,19 +25,34 @@ type MainContentProps = {
   ) => void;
 };
 
-const MainContent: React.FC<MainContentProps> = ({ formData, setFormData }) => (
-  <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
-    <div className="space-y-6">
+const MainContent: React.FC<MainContentProps> = ({ formData, setFormData }) => {
+  const [showReadmePreview, setShowReadmePreview] = useState(false);
+
+  const handleGenerateReadme = () => {
+    setShowReadmePreview(true);
+  };
+
+  const handleBackToForm = () => {
+    setShowReadmePreview(false);
+  };
+
+  if (showReadmePreview) {
+    return (
       <Suspense fallback={<LoadingSpinner />}>
-        <ReadmeForm formData={formData} setFormData={setFormData} />
+        <ReadmeGeneratorView formData={formData} onBack={handleBackToForm} />
       </Suspense>
-    </div>
-    <div className="xl:sticky xl:top-6 self-start">
-      <Suspense fallback={<LoadingSpinner />}>
-        <ReadmePreview formData={formData} />
-      </Suspense>
-    </div>
-  </div>
-);
+    );
+  }
+
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <StepperFormNew
+        formData={formData}
+        setFormData={setFormData}
+        onGenerateReadme={handleGenerateReadme}
+      />
+    </Suspense>
+  );
+};
 
 export default MainContent;
