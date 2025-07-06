@@ -4,7 +4,7 @@ import { FormDataType } from '@/types/readme-form';
 export function generateMarkdown(data: FormDataType): string {
   let markdown = '';
 
-  // Header section with GitHub style
+  // Header section with proper spacing and structure
   if (data.layoutStyle === 'creative') {
     markdown += generateCreativeHeader(data);
   } else if (data.layoutStyle === 'compact') {
@@ -13,10 +13,10 @@ export function generateMarkdown(data: FormDataType): string {
     markdown += generateStandardHeader(data);
   }
 
-  // About section with bullet points
+  // About section
   markdown += generateAboutSection(data);
 
-  // Skills section with icons
+  // Skills section
   if (data.skills && data.skills.length > 0) {
     markdown += generateSkillsSection(data.skills);
   }
@@ -24,18 +24,21 @@ export function generateMarkdown(data: FormDataType): string {
   // Social connections
   markdown += generateSocialSection(data);
 
-  // GitHub Stats and Streak
+  // GitHub statistics
   markdown += generateGitHubStatsSection(data);
+
+  // Contact section
+  markdown += generateContactSection(data);
 
   return markdown.trim();
 }
 
 function generateCreativeHeader(data: FormDataType): string {
   let header = '';
-
+  
   header += `<div align="center">\n\n`;
   header += `# Hi 👋, I'm ${data.name || 'Developer'}\n\n`;
-
+  
   if (data.title) {
     header += `### ${data.title}\n\n`;
   }
@@ -61,9 +64,9 @@ function generateCreativeHeader(data: FormDataType): string {
 
 function generateCompactHeader(data: FormDataType): string {
   let header = '';
-
+  
   header += `# 👋 ${data.name || 'Developer'}\n\n`;
-
+  
   if (data.title) {
     header += `**${data.title}**\n\n`;
   }
@@ -77,9 +80,9 @@ function generateCompactHeader(data: FormDataType): string {
 
 function generateStandardHeader(data: FormDataType): string {
   let header = '';
-
+  
   header += `<h1 align="center">Hi 👋, I'm ${data.name || 'Developer'}</h1>\n\n`;
-
+  
   if (data.title) {
     header += `<h3 align="center">${data.title}</h3>\n\n`;
   }
@@ -102,7 +105,7 @@ function generateAboutSection(data: FormDataType): string {
 
   // Quick facts section
   const facts = [];
-
+  
   if (data.currentWork) {
     facts.push(`🔭 ${data.currentWork}`);
   }
@@ -136,7 +139,7 @@ function generateAboutSection(data: FormDataType): string {
 
 function generateSkillsSection(skills: string[]): string {
   let skillsSection = '';
-
+  
   skillsSection += `## 🛠️ Languages and Tools\n\n`;
   skillsSection += `<p align="left">\n`;
 
@@ -271,7 +274,7 @@ function generateGitHubStatsSection(data: FormDataType): string {
   if (!data.github) return '';
 
   let statsSection = '';
-
+  
   if (data.showStats || data.showStreak) {
     statsSection += `## 📊 GitHub Stats\n\n`;
   }
@@ -279,36 +282,93 @@ function generateGitHubStatsSection(data: FormDataType): string {
   // GitHub Stats
   if (data.github && data.showStats) {
     statsSection += `<div align="center">\n\n`;
-    statsSection += `![${data.github}'s GitHub stats](https://github-readme-stats.vercel.app/api?username=${data.github}&show_icons=true&theme=default)\n\n`;
-    statsSection += `![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=${data.github}&layout=compact&theme=default)\n\n`;
+    statsSection += `<img src="https://github-readme-stats.vercel.app/api?username=${data.github}&show_icons=true&locale=en" alt="${data.github}" />\n\n`;
+    statsSection += `<img src="https://github-readme-stats.vercel.app/api/top-langs?username=${data.github}&show_icons=true&locale=en&layout=compact" alt="${data.github}" />\n\n`;
     statsSection += `</div>\n\n`;
   }
 
   // GitHub Streak
   if (data.github && data.showStreak) {
     statsSection += `<div align="center">\n\n`;
-    statsSection += `![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=${data.github}&theme=default)\n\n`;
+    statsSection += `<img src="https://github-readme-streak-stats.herokuapp.com/?user=${data.github}&" alt="${data.github}" />\n\n`;
     statsSection += `</div>\n\n`;
   }
 
-  // Contact section
-  if (data.email || data.portfolio) {
-    statsSection += `---\n\n`;
-    statsSection += `<div align="center">\n`;
+  return statsSection;
+}
 
-    if (data.email) {
-      statsSection += `  📧 [${data.email}](mailto:${data.email}) • `;
-    }
+function generateContactSection(data: FormDataType): string {
+  if (!data.email && !data.portfolio) return '';
 
-    if (data.portfolio) {
-      statsSection += `🌐 [Portfolio](${data.portfolio})`;
-    }
-
-    statsSection += `\n</div>\n\n`;
-    statsSection += `<div align="center">\n`;
-    statsSection += `  <p>Thanks for visiting my profile! 😊</p>\n`;
-    statsSection += `</div>\n`;
+  let contactSection = '';
+  contactSection += `## 📞 Let's Connect\n\n`;
+  
+  if (data.email) {
+    contactSection += `- 📧 Email: [${data.email}](mailto:${data.email})\n`;
+  }
+  
+  if (data.portfolio) {
+    contactSection += `- 🌐 Portfolio: [${data.portfolio}](${data.portfolio})\n`;
   }
 
-  return statsSection;
+  contactSection += '\n';
+  contactSection += `---\n\n`;
+  contactSection += `<div align="center">\n`;
+  contactSection += `  <p>Thanks for visiting my profile! 😊</p>\n`;
+  contactSection += `</div>\n`;
+
+  return contactSection;
+}
+            break;
+          case 'codepen':
+            url = `https://codepen.io/${url}`;
+            break;
+          case 'dev':
+            url = `https://dev.to/${url}`;
+            break;
+          case 'medium':
+            url = `https://medium.com/@${url}`;
+            break;
+          case 'facebook':
+            url = `https://facebook.com/${url}`;
+            break;
+          case 'stackoverflow':
+            url = `https://stackoverflow.com/users/${url}`;
+            break;
+        }
+      }
+
+      markdown += `<a href="${url}" target="blank"><img align="center" src="${social.icon}" alt="${social.url}" height="30" width="40" /></a>\n`;
+    });
+
+    markdown += `</p>\n\n`;
+  }
+
+  // Skills with icons - GitHub style
+  if (data.skills && data.skills.length > 0) {
+    markdown += `<h3 align="left">Languages and Tools:</h3>\n`;
+    markdown += `<p align="left"> `;
+
+    data.skills.forEach((skillName: string) => {
+      const skill = skillsData.find(s => s.name === skillName);
+      if (skill) {
+        markdown += `<a href="#" target="_blank" rel="noreferrer"> <img src="${skill.image}" alt="${skill.name}" width="40" height="40"/> </a> `;
+      }
+    });
+
+    markdown += `</p>\n\n`;
+  }
+
+  // GitHub Stats
+  if (data.github && data.showStats) {
+    markdown += `<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=${data.github}&show_icons=true&locale=en&layout=compact" alt="${data.github}" /></p>\n\n`;
+    markdown += `<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=${data.github}&show_icons=true&locale=en" alt="${data.github}" /></p>\n\n`;
+  }
+
+  // GitHub Streak
+  if (data.github && data.showStreak) {
+    markdown += `<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=${data.github}&" alt="${data.github}" /></p>\n\n`;
+  }
+
+  return markdown;
 }
